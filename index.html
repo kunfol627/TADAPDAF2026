@@ -297,6 +297,62 @@
         .toast.show { transform: translateX(0); }
         .toast.error { background: #EF4444; }
 
+        /* 演講嘉賓照片列 */
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        @media (min-width: 768px) {
+            .speaker-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .speaker-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .speaker-card {
+            background: #FFF;
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+        .speaker-img-wrap {
+            background-color: #8C949D; /* 配合原本去背PNG的質感灰底色 */
+            width: 100%;
+            padding-top: 100%; /* 1:1 等比例高度 */
+            position: relative;
+        }
+        .speaker-img-wrap img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: contain;
+            object-position: center bottom;
+        }
+        .speaker-info {
+            padding: 12px 10px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        /* 姓名與職稱順序調換的 CSS 調整 */
+        .speaker-info .title {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 4px; /* 將原本在 name 的 margin 移至 title 下方 */
+        }
+        .speaker-info .name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-navy);
+            letter-spacing: 1px;
+        }
+
         /* 新增：針對使用者要求的各大區塊縮減間隔（解除 100vh 限制並微調內距） */
         #toc, #origin, #agenda, #speakers, #annual-plan, #donations, #gallery {
             min-height: auto;
@@ -642,27 +698,28 @@
                             <td style="border: 1px solid var(--surface-border); padding: 12px;">8. 舉辦、協辦各種產業論壇</td>
                             <td style="border: 1px solid var(--surface-border); padding: 12px;">4.會員大會</td>
                         </tr>
-        <section id="directors">
-            <div class="section-title fade-in"><i class="fa-solid fa-address-book"></i> 理監事名錄</div>
-            <div class="card fade-in">
-                <div class="card-header"><div class="card-icon"><i class="fa-solid fa-user-tie"></i></div><h3>理事會 (Board of Directors)</h3></div>
-                <ul>
-                    <li><strong>理事長：</strong> <span class="name-wrap">廖本生</span></li>
-                    <li><strong>副理事長：</strong> <span class="name-wrap">謝智淵、</span><span class="name-wrap">邱芳琅</span></li>
-                    <li><strong>常務理事：</strong> <span class="name-wrap">周淑真、</span><span class="name-wrap">任怡賓、</span><span class="name-wrap">房麗珠、</span><span class="name-wrap">簡木川</span></li>
-                    <li><strong>理事：</strong> <span class="name-wrap">徐景文、</span><span class="name-wrap">蔡志勇、</span><span class="name-wrap">張指溫、</span><span class="name-wrap">呂榮輝、</span><span class="name-wrap">康博超、</span><span class="name-wrap">楊海霞、</span><span class="name-wrap">李浚霆、</span><span class="name-wrap">林宗德、</span><span class="name-wrap">徐玉郎、</span><span class="name-wrap">吳文輝、</span><span class="name-wrap">陳增逢、</span><span class="name-wrap">林昀霏、</span><span class="name-wrap">陳清淮、</span><span class="name-wrap">孫志堅、</span><span class="name-wrap">臧真豪、</span><span class="name-wrap">蔡旭坤、</span><span class="name-wrap">湯柏齡、</span><span class="name-wrap">陳昌楙</span></li>
-                    <li><strong>候補理事：</strong> <span class="name-wrap">簡文金、</span><span class="name-wrap">田雅華、</span><span class="name-wrap">黃荺婭</span></li>
-                </ul>
-            </div>
-
-            <div class="card fade-in">
-                <div class="card-header"><div class="card-icon"><i class="fa-solid fa-user-shield"></i></div><h3>監事會 (Supervisory Board)</h3></div>
-                <ul>
-                    <li><strong>監事長：</strong> <span class="name-wrap">林萬</span></li>
-                    <li><strong>常務監事：</strong> <span class="name-wrap">劉立宏</span></li>
-                    <!-- 已將 張舜勳 修改為 張舜勛 -->
-                    <li><strong>監事：</strong> <span class="name-wrap">簡材安、</span><span class="name-wrap">韓大富、</span><span class="name-wrap">方孜嘉、</span><span class="name-wrap">張舜勛、</span><span class="name-wrap">張傳俊</span></li>
-                </ul>
+                        <tr>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;">9. 舉辦金融專業論壇活動協助產業金融業務</td>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;">10. 舉辦會內聯誼活動</td>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;">11. 關心會員,參與婚喪喜慶</td>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;">12. 宣揚本會宗旨與會務吸收新會員</td>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;">13. 其他</td>
+                            <td style="border: 1px solid var(--surface-border); padding: 12px;"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -693,7 +750,8 @@
                         
                         <tr><td rowspan="18" style="border: 1px solid var(--surface-border); padding: 10px;">理事</td><td style="border: 1px solid var(--surface-border); padding: 10px;">徐景文</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">蔡志勇</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
-                        <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">張指溫</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
+                        <!-- 已將 張指溫 修改為 張指温 -->
+                        <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">張指温</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">呂榮輝</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">康博超</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">楊海霞</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
@@ -717,7 +775,6 @@
                         <!-- 監事會部分 -->
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">監事長</td><td style="border: 1px solid var(--surface-border); padding: 10px;">林萬</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">50,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">常務監事</td><td style="border: 1px solid var(--surface-border); padding: 10px;">劉立宏</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">40,000</td></tr>
-                        <!-- 已將 張舜勳 修改為 張舜勛 -->
                         <tr><td rowspan="5" style="border: 1px solid var(--surface-border); padding: 10px;">監事</td><td style="border: 1px solid var(--surface-border); padding: 10px;">簡材安</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">韓大富</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
                         <tr><td style="border: 1px solid var(--surface-border); padding: 10px;">方孜嘉</td><td style="border: 1px solid var(--surface-border); padding: 10px; font-weight: 600; color: var(--accent-yellow);">20,000</td></tr>
